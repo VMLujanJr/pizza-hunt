@@ -6,6 +6,12 @@ const pizzaController = {
     // get all pizzas (request to GET api endpoint)
     getAllPizza(req, res) {
         Pizza.find({})
+            .populate({
+                path: 'comments',
+                select: '-__v' // - means we do not want __v returned
+            })
+            .select('-__v') // - means we do not want __v returned
+            .sort({ _id: -1 }) // sorts in DESC order
             .then(dbPizzaData => res.json(dbPizzaData))
             .catch(err => {
                 console.log(err);
@@ -15,6 +21,12 @@ const pizzaController = {
     // get one pizza by id (request to GET api endpoint)
     getPizzaById({ params }, res) {
         Pizza.findOne({ _id: params.id })
+            .populate({
+                path: 'comments',
+                select: '-__v'
+            })
+            .select('-__v')
+            // no sort method since it's only a single pizza
             .then(dbPizzaData => {
                 // if no pizza is found, send 404
                 if (!dbPizzaData) {
