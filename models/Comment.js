@@ -38,7 +38,7 @@ const CommentSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now,
-            get: createdAtVal => dataFormat(createdAtVal)
+            get: createdAtVal => dateFormat(createdAtVal)
         },
         replies: [ReplySchema] // nested directly; unlike comment and pizza data
     },

@@ -18,7 +18,7 @@ router
     .put(addReply)
     .delete(removeComment);
 
-// /api/<pizzaId>/<commentId>/<replyId>
+// /api/comments/<pizzaId>/<commentId>/<replyId>
 /* created new route because you need the id of the individual reply,
     not just its parent
 */
