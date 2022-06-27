@@ -49,7 +49,7 @@ const pizzaController = {
     // update pizza by id (request to PUT api endpoint)
     updatePizza({ params, body }, res) {
         // by setting { new: true }, we're telling Mongoose to return the new version of the document
-        Pizza.findOneAndUpdate({ _id: params.id }, body, { new: true })
+        Pizza.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
             .then(dbPizzaData => {
                 if (!dbPizzaData) {
                     res.status(404).json({ message: 'No pizza found with this id!' });
